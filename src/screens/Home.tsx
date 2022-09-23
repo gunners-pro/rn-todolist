@@ -2,6 +2,7 @@ import React from 'react';
 import { VStack, HStack, Input, Button, useTheme } from 'native-base';
 import { Feather } from '@expo/vector-icons';
 import { Header } from '../components/Header';
+import { Hud } from '../components/Hud';
 
 export function Home() {
   const { colors } = useTheme();
@@ -30,6 +31,7 @@ export function Home() {
           <Feather name="plus-circle" size={18} color={colors.gray[100]} />
         </Button>
       </HStack>
+      <Hud />
     </VStack>
   );
 }
