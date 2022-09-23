@@ -3,7 +3,7 @@ import { Heading, Flex, HStack, Text } from 'native-base';
 
 export function Hud() {
   return (
-    <Flex justify="space-between" direction="row" mt={10} mx={6}>
+    <Flex justify="space-between" direction="row" mt={10} mb={6} mx={6}>
       <HStack space={2}>
         <Heading color="product.blue" fontSize={18}>
           Criadas
@@ -11,7 +11,8 @@ export function Hud() {
         <Text
           color="gray.200"
           bg="gray.400"
-          w={25}
+          minW={25}
+          px={2}
           h="5"
           rounded={10}
           textAlign="center"
@@ -26,7 +27,8 @@ export function Hud() {
         <Text
           color="gray.200"
           bg="gray.400"
-          w={25}
+          minW={25}
+          px={2}
           h="5"
           rounded={10}
           textAlign="center"
