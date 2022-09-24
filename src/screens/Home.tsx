@@ -3,13 +3,13 @@ import { VStack, HStack, Input, Button, useTheme } from 'native-base';
 import { Feather } from '@expo/vector-icons';
 import { Header } from '../components/Header';
 import { Hud } from '../components/Hud';
-import { EmptyTasks } from '../components/EmptyTasks';
+import { Task } from '../components/Task';
 
 export function Home() {
   const { colors } = useTheme();
 
   return (
-    <VStack bg="gray.600" h="full" w="full">
+    <VStack bg="gray.600" h="full" w="full" flex={1}>
       <Header />
       <HStack space={2} mx={6} mt={-27} h={54}>
         <Input
@@ -33,7 +33,7 @@ export function Home() {
         </Button>
       </HStack>
       <Hud />
-      <EmptyTasks />
+      <Task />
     </VStack>
   );
 }
