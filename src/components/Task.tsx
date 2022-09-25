@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { Text, HStack, Checkbox, IconButton, useTheme } from 'native-base';
 import { Feather } from '@expo/vector-icons';
+import { ITask } from '../screens/Home';
 
-export function Task() {
+type Props = {
+  task: ITask;
+  removeTask: (id: string) => void;
+};
+
+export function Task({ task, removeTask }: Props) {
   const [taskDone, setTaskdone] = useState(false);
   const { colors } = useTheme();
 
@@ -10,6 +16,7 @@ export function Task() {
     <HStack
       mx={6}
       p="4"
+      mb="3"
       space={5}
       bg="gray.500"
       alignItems="center"
@@ -18,8 +25,8 @@ export function Task() {
       borderRadius="lg"
     >
       <Checkbox
-        value="task"
-        isChecked={taskDone}
+        value={task.title}
+        isChecked={task.done}
         onChange={e => setTaskdone(e)}
         accessibilityLabel="this is a checkbox"
         bg="gray.500"
@@ -38,10 +45,10 @@ export function Task() {
         textAlign="justify"
         strikeThrough={taskDone}
       >
-        Integer urna interdum massa libero auctor neque turpis turpis semper.
+        {task.title}
       </Text>
 
-      <IconButton>
+      <IconButton onPress={() => removeTask(task.id)}>
         <Feather name="trash-2" color={colors.gray[300]} size={20} />
       </IconButton>
     </HStack>
