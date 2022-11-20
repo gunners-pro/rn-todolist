@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import uuid from 'react-native-uuid';
 import {
   VStack,
   HStack,
@@ -14,30 +13,14 @@ import { Feather } from '@expo/vector-icons';
 import { Header } from '../components/Header';
 import { Hud } from '../components/Hud';
 import { Task } from '../components/Task';
-
-export type ITask = {
-  id: string;
-  title: string;
-  done: boolean;
-};
+import { useTasks } from '../context/taskContext';
+import { EmptyTasks } from '../components/EmptyTasks';
 
 export function Home() {
   const { colors } = useTheme();
   const toastInputEmpty = useToast();
   const [newTask, setNewTask] = useState('');
-  const [tasks, setTasks] = useState<ITask[]>([
-    {
-      id: '1',
-      title:
-        'Integer urna interdum massa libero auctor neque turpis turpis semper.',
-      done: false,
-    },
-  ]);
-
-  function handleRemoveTask(id: string) {
-    const taskUpdated = tasks.filter(task => task.id !== id);
-    setTasks(taskUpdated);
-  }
+  const { tasks, addNewTask } = useTasks();
 
   function handleNewTask() {
     if (newTask.length <= 0) {
@@ -51,10 +34,7 @@ export function Home() {
       return;
     }
 
-    setTasks([
-      { id: uuid.v4().toString(), title: newTask, done: false },
-      ...tasks,
-    ]);
+    addNewTask(newTask);
 
     setNewTask('');
   }
@@ -88,9 +68,8 @@ export function Home() {
       <Hud />
       <FlatList
         data={tasks}
-        renderItem={({ item }) => (
-          <Task task={item} removeTask={handleRemoveTask} />
-        )}
+        renderItem={({ item }) => <Task task={item} />}
+        ListEmptyComponent={<EmptyTasks />}
       />
     </VStack>
   );

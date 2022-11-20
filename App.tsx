@@ -8,6 +8,7 @@ import {
 import { theme } from './src/styles/theme';
 import { Loading } from './src/components/Loading';
 import { Home } from './src/screens/Home';
+import { TaskProvider } from './src/context/taskContext';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Inter_400Regular, Inter_700Bold });
@@ -23,7 +24,9 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      <Home />
+      <TaskProvider>
+        <Home />
+      </TaskProvider>
     </NativeBaseProvider>
   );
 }

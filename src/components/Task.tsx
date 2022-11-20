@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Text, HStack, Checkbox, IconButton, useTheme } from 'native-base';
+import React from 'react';
+import Checkbox from 'expo-checkbox';
+import { Text, HStack, IconButton, useTheme } from 'native-base';
 import { Feather } from '@expo/vector-icons';
-import { ITask } from '../screens/Home';
+import { ITask, useTasks } from '../context/taskContext';
 
 type Props = {
   task: ITask;
-  removeTask: (id: string) => void;
 };
 
-export function Task({ task, removeTask }: Props) {
-  const [taskDone, setTaskdone] = useState(false);
+export function Task({ task }: Props) {
   const { colors } = useTheme();
+  const { removeTask, updateCompleteTask } = useTasks();
 
   return (
     <HStack
@@ -25,17 +25,12 @@ export function Task({ task, removeTask }: Props) {
       borderRadius="lg"
     >
       <Checkbox
-        value={task.title}
-        isChecked={task.done}
-        onChange={e => setTaskdone(e)}
-        accessibilityLabel="this is a checkbox"
-        bg="gray.500"
-        borderRadius="full"
-        borderColor="product.blue"
-        _checked={{
-          borderColor: 'product.purpleDark',
-          bg: 'product.purpleDark',
+        value={task.done}
+        onValueChange={() => updateCompleteTask(task.id)}
+        style={{
+          borderRadius: 100,
         }}
+        color={task.done ? '#5e60ce' : '#4ea8de'}
       />
       <Text
         flex={1}
@@ -43,7 +38,7 @@ export function Task({ task, removeTask }: Props) {
         fontSize={15}
         lineHeight="xl"
         textAlign="justify"
-        strikeThrough={taskDone}
+        strikeThrough={task.done}
       >
         {task.title}
       </Text>
