@@ -10,6 +10,7 @@ import {
   Box,
 } from 'native-base';
 import { Feather } from '@expo/vector-icons';
+import { LayoutAnimation } from 'react-native';
 import { Header } from '../components/Header';
 import { Hud } from '../components/Hud';
 import { Task } from '../components/Task';
@@ -23,6 +24,7 @@ export function Home() {
   const { tasks, addNewTask } = useTasks();
 
   function handleNewTask() {
+    LayoutAnimation.easeInEaseOut();
     if (newTask.length <= 0) {
       toastInputEmpty.show({
         render: () => (

@@ -49,7 +49,7 @@ export function TaskProvider({ children }) {
 
   const addNewTask = useCallback(
     (title: string) => {
-      setTasks([...tasks, { id: uuid.v4().toString(), title, done: false }]);
+      setTasks([{ id: uuid.v4().toString(), title, done: false }, ...tasks]);
     },
     [tasks],
   );

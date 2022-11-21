@@ -1,4 +1,5 @@
 import React from 'react';
+import { LayoutAnimation } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { Text, HStack, IconButton, useTheme } from 'native-base';
 import { Feather } from '@expo/vector-icons';
@@ -43,7 +44,12 @@ export function Task({ task }: Props) {
         {task.title}
       </Text>
 
-      <IconButton onPress={() => removeTask(task.id)}>
+      <IconButton
+        onPress={() => {
+          LayoutAnimation.easeInEaseOut();
+          removeTask(task.id);
+        }}
+      >
         <Feather name="trash-2" color={colors.gray[300]} size={20} />
       </IconButton>
     </HStack>
