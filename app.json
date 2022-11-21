@@ -1,10 +1,18 @@
 {
   "expo": {
-    "name": "rn-todolist",
-    "slug": "rn-todolist",
+    "name": "todolist",
+    "slug": "todolist",
     "version": "1.0.0",
+    "android": {
+      "package": "com.rntodolist"
+    },
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "69584002-609a-4bce-aed7-a501bfe3e8ad"
+      }
+    }
   }
 }

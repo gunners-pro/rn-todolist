@@ -5,6 +5,7 @@ import {
   Inter_400Regular,
   Inter_700Bold,
 } from '@expo-google-fonts/inter';
+import { Platform, UIManager } from 'react-native';
 import { theme } from './src/styles/theme';
 import { Loading } from './src/components/Loading';
 import { Home } from './src/screens/Home';
@@ -12,6 +13,12 @@ import { TaskProvider } from './src/context/taskContext';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Inter_400Regular, Inter_700Bold });
+
+  if (Platform.OS === 'android') {
+    if (UIManager.setLayoutAnimationEnabledExperimental) {
+      UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+  }
 
   if (!fontsLoaded) {
     return <Loading />;
