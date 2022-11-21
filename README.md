@@ -14,7 +14,8 @@
 [//]: # (Add your gifs/images here:)
 
 <div align="center">
-  <img src="gif.gif" alt="gif demo" height="425">
+  <img src="one.gif" alt="gif demo" height="425">
+  <img src="two.gif" alt="gif demo" height="425">
 </div>
 
 <hr />
